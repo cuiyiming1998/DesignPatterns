@@ -1,2 +1,2 @@
-# DesignPatterns
-一些设计模式的实现
+# ObserverTs
+观察者模式的简单实现
