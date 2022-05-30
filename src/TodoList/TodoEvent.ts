@@ -14,7 +14,7 @@ class TodoEvent {
     return TodoEvent.instance
   }
 
-  public addTodo(todo: ITodo) {
+  public addTodo(todo: ITodo): Promise<ITodo> {
     return new Promise((resolve, reject) => {
       // 是否存在
       const isExist = this.todoData.some(item => todo.content === item.content)
@@ -23,18 +23,20 @@ class TodoEvent {
         return reject(1001)
       }
       this.todoData.push(todo)
+      console.log('添加后的list', this.todoData)
       resolve(todo)
     })
   }
 
-  public removeTodo(id: Id) {
+  public removeTodo(id: Id): Promise<Id> {
     return new Promise((resolve, reject) => {
       this.todoData = this.todoData.filter(item => id !== item.id)
+      console.log('删除后的list', this.todoData)
       resolve(id)
     })
   }
 
-  public toggleTodo(id: Id) {
+  public toggleTodo(id: Id): Promise<Id> {
     return new Promise((resolve, reject) => {
       const data = this.todoData.find(item => id === item.id)
       data.completed = !data.completed
